@@ -4,11 +4,42 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:toolcad23.Views"
+      xmlns:retrieveViews="clr-namespace:toolcad23.Views.OtherViews.RetrieveViews"
+      xmlns:viewModels="clr-namespace:toolcad23.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="RetrievePageView">
 
+    <Page.DataContext>
+        <viewModels:RetrievePageViewModel/>
+    </Page.DataContext>
+
     <Grid>
-        <TextBlock Text="QWERTY" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" Foreground="AliceBlue"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Background="Transparent" BorderThickness="2" BorderBrush="#9a67ea" CornerRadius="14" Grid.Column="0" Grid.Row="0" Margin="12"/>
+            <Border Background="Transparent" BorderThickness="2" BorderBrush="#9a67ea" CornerRadius="14" Grid.Column="1" Grid.Row="0" Margin="12"/>
+            <Border Background="Transparent" BorderThickness="2" BorderBrush="#9a67ea" CornerRadius="14" Grid.Column="0" Grid.Row="1" Margin="12"/>
+            <Border Background="Transparent" BorderThickness="2" BorderBrush="#9a67ea" CornerRadius="14" Grid.Column="1" Grid.Row="1" Margin="12"/>
+
+            <retrieveViews:RetrieveControlView Grid.Column="0" Grid.Row="0" Margin="14" 
+                                               GreenStandCubesCollection="{Binding GreenStandCubesR1}" 
+                                               RedStandCubesCollection="{Binding RedStandCubesR1}"/>
+            <retrieveViews:RetrieveControlView Grid.Column="1" Grid.Row="0" Margin="14"/>
+            <retrieveViews:RetrieveControlView Grid.Column="0" Grid.Row="1" Margin="14"/>
+            <retrieveViews:RetrieveControlView Grid.Column="1" Grid.Row="1" Margin="14"/>
+        </Grid>
     </Grid>
 </Page>
