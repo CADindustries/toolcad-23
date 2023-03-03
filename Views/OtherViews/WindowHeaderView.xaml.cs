@@ -38,6 +38,15 @@ namespace toolcad23.Views.OtherViews
         public static readonly DependencyProperty ProductNameProperty =
             DependencyProperty.Register("ProductName", typeof(string), typeof(WindowHeaderView));
 
+        public Window WindowParameter
+        {
+            get { return (Window)GetValue(WindowParameterProperty); }
+            set { SetValue(WindowParameterProperty, value); }
+        }
+
+        public static readonly DependencyProperty WindowParameterProperty =
+            DependencyProperty.Register("WindowParameter", typeof(Window), typeof(WindowHeaderView));
+
         public ICommand MinimizeWindowCommand
         {
             get { return (ICommand)GetValue(MinimizeWindowCommandProperty); }

@@ -6,8 +6,13 @@
         xmlns:local="clr-namespace:toolcad23"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:otherviews="clr-namespace:toolcad23.Views.OtherViews"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        xmlns:viewmodels="clr-namespace:toolcad23.ViewModels"
+        mc:Ignorable="d" x:Name="ThisWindow"
+        Title="MainWindow" Height="450" Width="800" WindowState="{Binding CurrentWindowState, Mode=TwoWay}">
+
+    <Window.DataContext>
+        <viewmodels:MainWindowViewModel/>
+    </Window.DataContext>
 
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="22" 
@@ -35,7 +40,18 @@
             <otherviews:WindowHeaderView x:Name="WindowHeader"  
                                          Grid.Row="0" 
                                          Grid.Column="0" 
-                                         Grid.ColumnSpan="3"/>
+                                         Grid.ColumnSpan="3"
+                                         LogoImage="{Binding LogoImage}"
+                                         ProductName="toolcad-23"
+                                         MinimizeWindowCommand="{Binding MinimizeWindowCommand}"
+                                         MaximizeWindowCommand="{Binding MaximizeWindowCommand}"
+                                         RestoreWindowCommand="{Binding RestoreWindowCommand}"
+                                         CloseWindowCommand="{Binding CloseWindowCommand}"
+                                         WindowParameter="{Binding ElementName=ThisWindow}"
+                                         MaximizeButtonVisibility="{Binding MaximizeButtonVisibility}"
+                                         RestoreButtonVisibility="{Binding RestoreButtonVisibility}"
+                                         ProgressBarVisibility="{Binding ProgressBarVisibility}"
+                                         CheckAllDoneVisibility="{Binding CheckAllDoneVisibility}"/>
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="2" Grid.ColumnSpan="3"/>
         </Grid>
     </Border>

@@ -147,6 +147,7 @@
         <Button
 		    Grid.Column="6"
 		    Command="{Binding MinimizeWindowCommand, ElementName=windowHeaderView}"
+            CommandParameter="{Binding WindowParameter, ElementName=windowHeaderView}"
 		    RenderOptions.EdgeMode="Aliased"
 		    Style="{StaticResource TitleBarButtonStyle}">
             <Path
@@ -160,6 +161,7 @@
 		    Name="maximizeButton"
 		    Grid.Column="7"
 		    Command="{Binding MaximizeWindowCommand, ElementName=windowHeaderView}"
+            CommandParameter="{Binding WindowParameter, ElementName=windowHeaderView}"
             Visibility="{Binding MaximizeButtonVisibility, ElementName=windowHeaderView}"
 		    Style="{StaticResource TitleBarButtonStyle}">
             <Path
@@ -173,6 +175,7 @@
 		    Name="restoreButton" Visibility="{Binding RestoreButtonVisibility, ElementName=windowHeaderView}"
 		    Grid.Column="7"
 		    Command="{Binding RestoreWindowCommand, ElementName=windowHeaderView}"
+            CommandParameter="{Binding WindowParameter, ElementName=windowHeaderView}"
 		    Style="{StaticResource TitleBarButtonStyle}">
             <Path
 			    Width="30"
@@ -184,6 +187,7 @@
         <Button
 		    Grid.Column="8"
 		    Command="{Binding CloseWindowCommand, ElementName=windowHeaderView}"
+            CommandParameter="{Binding WindowParameter, ElementName=windowHeaderView}"
 		    Style="{StaticResource TitleBarCloseButtonStyle}">
             <Path
 			    Width="30"
