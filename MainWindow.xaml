@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:otherviews="clr-namespace:toolcad23.Views.OtherViews"
         xmlns:viewmodels="clr-namespace:toolcad23.ViewModels"
-        mc:Ignorable="d" x:Name="ThisWindow"
+        mc:Ignorable="d" x:Name="ThisWindow" WindowStyle="None"
         Title="MainWindow" Height="450" Width="800" WindowState="{Binding CurrentWindowState, Mode=TwoWay}">
 
     <Window.DataContext>

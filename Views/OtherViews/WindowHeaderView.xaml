@@ -102,13 +102,16 @@
     </Control.Resources>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="22"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="160" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="36" />
             <ColumnDefinition Width="30" />
             <ColumnDefinition Width="30" />
             <ColumnDefinition Width="30" />
@@ -206,6 +209,7 @@
                      Height="18"
                      IsIndeterminate="True"  
                      Margin="0, 0"
+                     IsHitTestVisible="False"
                      Visibility="{Binding ProgressBarVisibility, ElementName=windowHeaderView}"/>
         <materialDesign:PackIcon Kind="CheckAll" 
                                  x:Name="AllDonePI" 
@@ -213,7 +217,8 @@
                                  Foreground="Cyan"
                                  Grid.Column="5" 
                                  VerticalAlignment="Center" 
-                                 Margin="5, 0" 
+                                 Margin="10, 0" 
+                                 IsHitTestVisible="False"
                                  Visibility="{Binding CheckAllDoneVisibility, ElementName=windowHeaderView}"/>
     </Grid>
 </UserControl>
