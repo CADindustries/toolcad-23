@@ -8,7 +8,7 @@
         xmlns:otherviews="clr-namespace:toolcad23.Views.OtherViews"
         xmlns:viewmodels="clr-namespace:toolcad23.ViewModels"
         mc:Ignorable="d" x:Name="ThisWindow" WindowStyle="None"
-        Title="MainWindow" Height="450" Width="800" WindowState="{Binding CurrentWindowState, Mode=TwoWay}">
+        Title="MainWindow" Height="600" Width="800" WindowState="{Binding CurrentWindowState, Mode=TwoWay}">
 
     <Window.DataContext>
         <viewmodels:MainWindowViewModel/>
@@ -29,8 +29,8 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="22"/>
-                <RowDefinition Height="46"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="46"/>
             </Grid.RowDefinitions>
 
             <Rectangle Grid.ColumnSpan="3" 
@@ -52,7 +52,51 @@
                                          RestoreButtonVisibility="{Binding RestoreButtonVisibility}"
                                          ProgressBarVisibility="{Binding ProgressBarVisibility}"
                                          CheckAllDoneVisibility="{Binding CheckAllDoneVisibility}"/>
-            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="2" Grid.ColumnSpan="3"/>
+
+            <materialDesign:Card Grid.Row="2" Grid.ColumnSpan="3">
+                <TabControl
+                    HorizontalContentAlignment="Center"
+                    materialDesign:ColorZoneAssist.Mode="PrimaryLight"
+                    materialDesign:NavigationRailAssist.SelectionCornerRadius="5"
+                    materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+                    Style="{StaticResource MaterialDesignNavigationRailTabControl}" x:Name="MyTabControl"
+                    TabStripPlacement="Top" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}" >
+                    <TabItem Width="110" Height="38" Margin="0, 4">
+                        <TabItem.Header>
+                            <StackPanel Width="auto" Height="auto" Orientation="Horizontal">
+                                <materialDesign:PackIcon Width="26" Height="26" HorizontalAlignment="Center" Kind="InformationOutline" />
+                                <TextBlock HorizontalAlignment="Center" Text="Главная" FontSize="18" Margin="4, 0"/>
+                            </StackPanel>
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem Width="130" Height="38">
+                        <TabItem.Header>
+                            <StackPanel Width="auto" Height="auto" Orientation="Horizontal">
+                                <materialDesign:PackIcon Width="26" Height="26" HorizontalAlignment="Center" Kind="BoomGateArrowUpOutline" />
+                                <TextBlock HorizontalAlignment="Center" Text="Вывоз" FontSize="18" Margin="4, 0"/>
+                            </StackPanel>
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem Width="130" Height="38">
+                        <TabItem.Header>
+                            <StackPanel Width="auto" Height="auto" Orientation="Horizontal">
+                                <materialDesign:PackIcon Width="26" Height="26" HorizontalAlignment="Center" Kind="BoomGateArrowDownOutline" />
+                                <TextBlock HorizontalAlignment="Center" Text="Завоз" FontSize="18" Margin="4, 0"/>
+                            </StackPanel>
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem Width="0" Height="0" Visibility="Collapsed">
+                        <TabItem.Header>
+                            <StackPanel Width="auto" Height="auto">
+                                <materialDesign:PackIcon Width="26" Height="26" HorizontalAlignment="Center" Kind="KeyLink" />
+                                <TextBlock HorizontalAlignment="Center" Text="Другое" FontSize="18" Margin="4, 0"/>
+                            </StackPanel>
+                        </TabItem.Header>
+                    </TabItem>
+                </TabControl>
+            </materialDesign:Card>
+            
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1" Grid.ColumnSpan="3" Content="{Binding MainFrameSource, Mode=TwoWay}"/>
         </Grid>
     </Border>
 </Window>

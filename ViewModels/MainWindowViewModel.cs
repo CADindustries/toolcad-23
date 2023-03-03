@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -56,6 +57,20 @@ namespace toolcad23.ViewModels
             set { checkAllDoneVisibility = value; OnPropertyChanged(); }
         }
 
+        private Page mainFrameSource;
+        public Page MainFrameSource
+        {
+            get { return mainFrameSource; }
+            set { mainFrameSource = value; OnPropertyChanged(); }
+        }
+        
+        private int selectedTabIndex;
+        public int SelectedTabIndex
+        {
+            get { return selectedTabIndex; }
+            set { selectedTabIndex = value; OnPropertyChanged(); TabSelectionChanged(selectedTabIndex); }
+        }
+
         #region Commands
         public ICommand MinimizeWindowCommand { get; set; }
         public ICommand MaximizeWindowCommand { get; set; }
@@ -73,11 +88,44 @@ namespace toolcad23.ViewModels
             OnStateChanged(WindowState.Normal);
             OnActionChanged(false);
             SetLogoImage();
+
+            GoToPage(UIFactory.GetInfoPageView());
         }
 
         private void SetLogoImage()
         {
             LogoImage = MainWindowModel.GetLogoImage();
+        }
+
+        private void GoToPage(Page page)
+        {
+            if (MainFrameSource != page)
+            {
+                MainFrameSource = page;
+            }
+        }
+
+        private void TabSelectionChanged(int index)
+        {
+            // maybe cringe, idk
+            switch (index)
+            {
+                case 0:
+                    {
+                        GoToPage(UIFactory.GetInfoPageView());
+                        break;
+                    }
+                case 1:
+                    {
+                        GoToPage(UIFactory.GetRetrievePageView());
+                        break;
+                    }
+                case 2:
+                    {
+                        GoToPage(UIFactory.GetDeliveryPageView());
+                        break;
+                    }
+            }
         }
 
         private void OnActionChanged(bool done)

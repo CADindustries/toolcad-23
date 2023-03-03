@@ -9,6 +9,22 @@
       Title="InfoPageView">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="180px"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" ></ColumnDefinition>
+            <ColumnDefinition Width="*" ></ColumnDefinition>
+            <ColumnDefinition Width="150" ></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Source="/Resources/logo_tc23.png" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" 
+               RenderOptions.BitmapScalingMode="Fant"/>
+        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Text="toolcad-23" FontSize="86" VerticalAlignment="Center" 
+                   HorizontalAlignment="Center" FontFamily="Trebuchet MS" Foreground="AliceBlue"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="10, 0" Text="Powered by: Abdrakov corp." Foreground="AliceBlue" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
+
     </Grid>
 </Page>

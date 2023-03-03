@@ -67,14 +67,21 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\MainWindowModel.cs" />
+    <Compile Include="Models\UIFactory.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Commands\DelegateCommand.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\DeliveryPageView.xaml.cs">
+      <DependentUpon>DeliveryPageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\InfoPageView.xaml.cs">
       <DependentUpon>InfoPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OtherViews\WindowHeaderView.xaml.cs">
       <DependentUpon>WindowHeaderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RetrievePageView.xaml.cs">
+      <DependentUpon>RetrievePageView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -88,11 +95,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\DeliveryPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\InfoPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OtherViews\WindowHeaderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RetrievePageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
