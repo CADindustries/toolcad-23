@@ -38,29 +38,35 @@
             <retrieveViews:RetrieveControlView Grid.Column="0" Grid.Row="0" Margin="14" 
                                                GreenStandCubesCollection="{Binding GreenStandCubesR1}" 
                                                RedStandCubesCollection="{Binding RedStandCubesR1}"/>
-            <retrieveViews:RetrieveControlView Grid.Column="1" Grid.Row="0" Margin="14"/>
-            <retrieveViews:RetrieveControlView Grid.Column="0" Grid.Row="1" Margin="14"/>
-            <retrieveViews:RetrieveControlView Grid.Column="1" Grid.Row="1" Margin="14"/>
+            <retrieveViews:RetrieveControlView Grid.Column="1" Grid.Row="0" Margin="14"
+                                               GreenStandCubesCollection="{Binding GreenStandCubesR2}" 
+                                               RedStandCubesCollection="{Binding RedStandCubesR2}"/>
+            <retrieveViews:RetrieveControlView Grid.Column="0" Grid.Row="1" Margin="14"
+                                               GreenStandCubesCollection="{Binding GreenStandCubesR3}" 
+                                               RedStandCubesCollection="{Binding RedStandCubesR3}"/>
+            <retrieveViews:RetrieveControlView Grid.Column="1" Grid.Row="1" Margin="14"
+                                               GreenStandCubesCollection="{Binding GreenStandCubesR4}" 
+                                               RedStandCubesCollection="{Binding RedStandCubesR4}"/>
         </Grid>
         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-            <TextBox Style="{StaticResource InputBoxRounded}" Margin="14, 10"
+            <TextBox Style="{StaticResource InputBoxRounded}" Margin="14, 10" Text="{Binding YellowText}"
                      HorizontalAlignment="Stretch" MaxLength="1" Padding="6" MaxWidth="200"
                      materialDesign:HintAssist.Hint="Кол-во жёлтых" BorderThickness="2" BorderBrush="#9a67ea"/>
-            <TextBox Style="{StaticResource InputBoxRounded}" Margin="14, 10"
+            <TextBox Style="{StaticResource InputBoxRounded}" Margin="14, 10" Text="{Binding WhiteText}"
                      HorizontalAlignment="Stretch" MaxLength="1" Padding="6" MaxWidth="200"
                      materialDesign:HintAssist.Hint="Кол-во белых" BorderThickness="2" BorderBrush="#9a67ea"/>
-            <TextBox Style="{StaticResource InputBoxRounded}" Margin="14, 10, 14, 35"
+            <TextBox Style="{StaticResource InputBoxRounded}" Margin="14, 10, 14, 35" Text="{Binding BlueText}"
                      HorizontalAlignment="Stretch" MaxLength="1" Padding="6" MaxWidth="200"
                      materialDesign:HintAssist.Hint="Кол-во синих" BorderThickness="2" BorderBrush="#9a67ea"/>
 
-            <TextBox Style="{StaticResource InputBoxRounded}" Margin="14, 10"
+            <TextBox Style="{StaticResource InputBoxRounded}" Margin="14, 10" Text="{Binding MaxRedText}"
                      HorizontalAlignment="Stretch" MaxLength="1" Padding="6" MaxWidth="200"
                      materialDesign:HintAssist.Hint="MAX на красном" BorderThickness="2" BorderBrush="#9a67ea"/>
-            <TextBox Style="{StaticResource InputBoxRounded}" Margin="14, 10, 14, 35"
+            <TextBox Style="{StaticResource InputBoxRounded}" Margin="14, 10, 14, 35" Text="{Binding MaxGreenText}"
                      HorizontalAlignment="Stretch" MaxLength="1" Padding="6" MaxWidth="200"
                      materialDesign:HintAssist.Hint="MAX на зеленом" BorderThickness="2" BorderBrush="#9a67ea"/>
 
-            <Button Style="{StaticResource ButtonRounded}" Content="Зарандомить" Margin="14, 10" MaxWidth="200"/>
+            <Button Style="{StaticResource ButtonRounded}" Content="Зарандомить" Margin="14, 10" MaxWidth="200" Command="{Binding RandomizeCommand}"/>
         </StackPanel>
     </Grid>
 </Page>
