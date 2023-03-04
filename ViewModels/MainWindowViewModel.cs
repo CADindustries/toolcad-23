@@ -85,11 +85,20 @@ namespace toolcad23.ViewModels
             RestoreWindowCommand = new DelegateCommand(OnRestoreWindowCommand);
             CloseWindowCommand = new DelegateCommand(OnCloseWindowCommand);
 
+            MainWindowModel.IsAllDoneChanged += OnStaticAllDoneChanged;
+
             OnStateChanged(WindowState.Normal);
             OnActionChanged(false);
             SetLogoImage();
 
             GoToPage(UIFactory.GetInfoPageView());
+
+            MainWindowModel.IsAllDone = true;
+        }
+
+        private void OnStaticAllDoneChanged(object sender, EventArgs e)
+        {
+            OnActionChanged(MainWindowModel.IsAllDone);
         }
 
         private void SetLogoImage()

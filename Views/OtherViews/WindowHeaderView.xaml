@@ -214,7 +214,7 @@
         <materialDesign:PackIcon Kind="CheckAll" 
                                  x:Name="AllDonePI" 
                                  ToolTip="Приложение готово к работе"
-                                 Foreground="Cyan"
+                                 Foreground="#FF85E7B4"
                                  Grid.Column="5" 
                                  VerticalAlignment="Center" 
                                  Margin="10, 0" 

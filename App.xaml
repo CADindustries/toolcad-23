@@ -11,9 +11,55 @@
                 <Setter Property="BorderThickness" Value="1" />
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=WindowState}" Value="Maximized">
-                        <Setter Property="BorderThickness" Value="9" />
+                        <Setter Property="BorderThickness" Value="1" />
                     </DataTrigger>
                 </Style.Triggers>
+            </Style>
+            
+            <Style x:Key="InputBoxRounded" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                <Setter Property="Foreground" Value="AliceBlue" />
+                <Setter Property="Height" Value="46" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontFamily" Value="Trebuchet MS" />
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="TextAlignment" Value="Center" />
+            </Style>
+
+            <Style TargetType="Button" x:Key="ButtonRounded">
+                <Setter Property="Foreground" Value="AliceBlue" />
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="Height" Value="46" />
+                <Setter Property="FontFamily" Value="Trebuchet MS" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="borderInside" CornerRadius="4" BorderThickness="1" Background="Transparent" BorderBrush="#FF85E7B4">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsDefaulted" Value="true">
+                                    <Setter Property="Background" TargetName="borderInside" Value="Transparent"/>
+                                    <Setter Property="BorderThickness" TargetName="borderInside" Value="1"/>
+                                    <Setter Property="BorderBrush" TargetName="borderInside" Value="#FF85E7B4"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Background" TargetName="borderInside" Value="Transparent"/>
+                                    <Setter Property="BorderThickness" TargetName="borderInside" Value="2"/>
+                                    <Setter Property="BorderBrush" TargetName="borderInside" Value="#FF85E7B4"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="true">
+                                    <Setter Property="Background" TargetName="borderInside" Value="Transparent"/>
+                                    <Setter Property="BorderThickness" TargetName="borderInside" Value="3"/>
+                                    <Setter Property="BorderBrush" TargetName="borderInside" Value="#FF85E7B4"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
 
             <ResourceDictionary.MergedDictionaries>

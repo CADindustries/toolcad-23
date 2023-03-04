@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace toolcad23.Models
 {
-    public enum CubeTypeEnum
+    public class CubeTypeEnum
     {
-        None,
-        White,
-        Blue,
-        Yellow
+        public const string None = "empty_cube.png";
+        public const string White = "white_cube.png";
+        public const string Blue = "blue_cube.png";
+        public const string Yellow = "yellow_cube.png";
     }
 }
