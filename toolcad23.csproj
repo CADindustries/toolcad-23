@@ -68,6 +68,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\CubeTypeEnum.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
+    <Compile Include="Models\MyExtensions.cs" />
     <Compile Include="Models\UIFactory.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Commands\DelegateCommand.cs" />
