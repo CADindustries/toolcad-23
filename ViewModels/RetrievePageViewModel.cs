@@ -68,6 +68,8 @@ namespace toolcad23.ViewModels
             SetDefaults();
         }
 
+        #region Randomizing
+
         async private void Randomize(object parameter)
         {
             if (!int.TryParse(YellowText, out int parsedYellow))
@@ -162,7 +164,6 @@ namespace toolcad23.ViewModels
                 var currentRoomElements = standCubes.Where(x => x.Key.X == i).ToList();
                 foreach (var currentElement in currentRoomElements)
                 {
-                    // Debug.WriteLine(currentElement.Key.Y);
                     collection[currentElement.Key.Y] = GetImage(currentElement.Value);
                 }
             }
@@ -225,6 +226,8 @@ namespace toolcad23.ViewModels
             places.Shuffle();
             return places;
         }
+
+        #endregion
 
         private void SetDefaults()
         {
