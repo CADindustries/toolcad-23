@@ -34,6 +34,18 @@
                HorizontalAlignment="Center" VerticalAlignment="Center" 
                RenderOptions.BitmapScalingMode="Fant"/>
 
+        <Image Source="{Binding RedStandCubesCollection[2], ElementName=retrieveControlView}" Grid.Column="0" Grid.Row="0" 
+               HorizontalAlignment="Center" VerticalAlignment="Center" 
+               RenderOptions.BitmapScalingMode="Fant"/>
+
+        <Image Source="{Binding RedStandCubesCollection[1], ElementName=retrieveControlView}" Grid.Column="0" Grid.Row="1" 
+               HorizontalAlignment="Center" VerticalAlignment="Center" 
+               RenderOptions.BitmapScalingMode="Fant"/>
+
+        <Image Source="{Binding RedStandCubesCollection[0], ElementName=retrieveControlView}" Grid.Column="0" Grid.Row="2" 
+               HorizontalAlignment="Center" VerticalAlignment="Center" 
+               RenderOptions.BitmapScalingMode="Fant"/>
+
         <Image Source="/Resources/red_stand.png" Grid.Column="0" Grid.Row="3" 
                HorizontalAlignment="Center" VerticalAlignment="Center" 
                RenderOptions.BitmapScalingMode="Fant"/>

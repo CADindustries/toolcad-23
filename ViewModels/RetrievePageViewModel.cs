@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using toolcad23.Models;
 using toolcad23.ViewModels.Commands;
 
@@ -16,14 +18,9 @@ namespace toolcad23.ViewModels
     internal class RetrievePageViewModel : BaseViewModel
     {
         private static readonly string imagePath = "pack://application:,,,/Resources/";
-        public ObservableCollection<BitmapImage> RedStandCubesR1 { get; set; }
-        public ObservableCollection<BitmapImage> GreenStandCubesR1 { get; set; }
-        public ObservableCollection<BitmapImage> RedStandCubesR2 { get; set; }
-        public ObservableCollection<BitmapImage> GreenStandCubesR2 { get; set; }
-        public ObservableCollection<BitmapImage> RedStandCubesR3 { get; set; }
-        public ObservableCollection<BitmapImage> GreenStandCubesR3 { get; set; }
-        public ObservableCollection<BitmapImage> RedStandCubesR4 { get; set; }
-        public ObservableCollection<BitmapImage> GreenStandCubesR4 { get; set; }
+
+        public ObservableCollection<ObservableCollection<BitmapImage>> GreenStandCubes { get; set; }
+        public ObservableCollection<ObservableCollection<BitmapImage>> RedStandCubes { get; set; }
 
         private string yellowText;
         public string YellowText
@@ -67,8 +64,8 @@ namespace toolcad23.ViewModels
         internal RetrievePageViewModel()
         {
             RandomizeCommand = new DelegateCommand(Randomize);
-            CleanUpAll();
-            Test();
+            SetUpAll();
+            SetDefaults();
         }
 
         async private void Randomize(object parameter)
@@ -116,39 +113,87 @@ namespace toolcad23.ViewModels
                 return;
             }
 
+            MainWindowModel.IsAllDone = false;
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                CleanUpAll();
+            });
+
             await Task.Run(() =>
             {
-                List<Vector> allowedGreenList = GenerateAllowedList(parsedMaxGreen);
-                List<Vector> allowedRedList = GenerateAllowedList(parsedMaxRed);
+                List<Vector2Int> allowedGreenList = GenerateAllowedList(parsedMaxGreen);
+                List<Vector2Int> allowedRedList = GenerateAllowedList(parsedMaxRed);
 
                 List<string> greenStandElements = GenerateRandomElements(parsedWhite, parsedBlue);
                 List<string> yellowStandElements = Enumerable.Repeat(CubeTypeEnum.Yellow, parsedYellow).ToList();
 
-                Dictionary<string, Vector> greenStandCubes = new Dictionary<string, Vector>();
-                Dictionary<string, Vector> redStandCubes = new Dictionary<string, Vector>();
+                Dictionary<Vector2Int, string> greenStandCubes = new Dictionary<Vector2Int, string>();
+                Dictionary<Vector2Int, string> redStandCubes = new Dictionary<Vector2Int, string>();
 
                 while (greenStandElements.Count > 0)
                 {
-                    greenStandCubes.Add(greenStandElements.Pop(0), allowedGreenList.Pop(0));
+                    greenStandCubes.Add(allowedGreenList.Pop(0), greenStandElements.Pop(0));
                 }
 
                 while (yellowStandElements.Count > 0)
                 {
-                    redStandCubes.Add(yellowStandElements.Pop(0), allowedRedList.Pop(0));
+                    redStandCubes.Add(allowedRedList.Pop(0), yellowStandElements.Pop(0));
                 }
+
+                LowDownCubes(greenStandCubes);
+                LowDownCubes(redStandCubes);
+
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    FillUpBitmapList(greenStandCubes, true);
+                    FillUpBitmapList(redStandCubes, false);
+                });
             });
+
+            MainWindowModel.IsAllDone = true;
         }
 
-        private void LowDownCubes(Dictionary<string, Vector> standCubes)
+        private void FillUpBitmapList(Dictionary<Vector2Int, string> standCubes, bool isGreen)
         {
             for (int i = 0; i < 4; i++)
             {
-                var currentRoomElements = standCubes.Select(x => x.Value).Where(x => x.X == i).ToList();
-                var min = currentRoomElements.Select(x => x.Y).Min();
-                for (int j = 0; j < currentRoomElements.Count; j++)
+                ObservableCollection<BitmapImage> collection = isGreen ? GreenStandCubes[i] : RedStandCubes[i];
+                var currentRoomElements = standCubes.Where(x => x.Key.X == i).ToList();
+                foreach (var currentElement in currentRoomElements)
                 {
-                    // currentRoomElements[i].Y -= 3;
-                }  
+                    // Debug.WriteLine(currentElement.Key.Y);
+                    collection[currentElement.Key.Y] = GetImage(currentElement.Value);
+                }
+            }
+        }
+
+        private void LowDownCubes(Dictionary<Vector2Int, string> standCubes)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                var currentRoomElements = standCubes.Select(x => x.Key).Where(x => x.X == i).ToList();
+                if (currentRoomElements.Count > 0)
+                {
+                    // cringe logic to low down the cubes in List
+                    int counter = 0;
+                    while (counter < currentRoomElements.Count)
+                    {
+                        var vect = currentRoomElements.FirstOrDefault(x => x.Y == counter);
+                        if (vect == null)
+                        {
+                            foreach (var currentRoomElement in currentRoomElements.Where(x => x.Y > counter))
+                            {
+                                currentRoomElement.Y -= 1;
+                            }
+                        }
+                        vect = currentRoomElements.FirstOrDefault(x => x.Y == counter);
+                        if (vect != null)
+                        {
+                            counter++;
+                        }
+                    }
+                }
             }
         }
 
@@ -167,36 +212,64 @@ namespace toolcad23.ViewModels
             return elements;
         }
 
-        private List<Vector> GenerateAllowedList(int max)
+        private List<Vector2Int> GenerateAllowedList(int max)
         {
-            List<Vector> places = new List<Vector>();
+            List<Vector2Int> places = new List<Vector2Int>();
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < max; j++)
                 {
-                    places.Add(new Vector(i, j));
+                    places.Add(new Vector2Int(i, j));
                 }
             }
             places.Shuffle();
             return places;
         }
 
+        private void SetDefaults()
+        {
+            YellowText = "2";
+            WhiteText = "3";
+            BlueText = "3";
+            MaxGreenText = "2";
+            MaxRedText = "1";
+        }
+
+        private void SetUpAll()
+        {
+            GreenStandCubes = new ObservableCollection<ObservableCollection<BitmapImage>>()
+            {
+                new ObservableCollection<BitmapImage>() { null, null, null },
+                new ObservableCollection<BitmapImage>() { null, null, null },
+                new ObservableCollection<BitmapImage>() { null, null, null },
+                new ObservableCollection<BitmapImage>() { null, null, null },
+            };
+
+            RedStandCubes = new ObservableCollection<ObservableCollection<BitmapImage>>()
+            {
+                new ObservableCollection<BitmapImage>() { null, null, null },
+                new ObservableCollection<BitmapImage>() { null, null, null },
+                new ObservableCollection<BitmapImage>() { null, null, null },
+                new ObservableCollection<BitmapImage>() { null, null, null },
+            };
+        }
 
         private void CleanUpAll()
         {
-            RedStandCubesR1 = new ObservableCollection<BitmapImage>() { null, null, null };
-            GreenStandCubesR1 = new ObservableCollection<BitmapImage>() { null, null, null };
-            RedStandCubesR2 = new ObservableCollection<BitmapImage>() { null, null, null };
-            GreenStandCubesR2 = new ObservableCollection<BitmapImage>() { null, null, null };
-            RedStandCubesR3 = new ObservableCollection<BitmapImage>() { null, null, null };
-            GreenStandCubesR3 = new ObservableCollection<BitmapImage>() { null, null, null };
-            RedStandCubesR4 = new ObservableCollection<BitmapImage>() { null, null, null };
-            GreenStandCubesR4 = new ObservableCollection<BitmapImage>() { null, null, null };
-        }
-
-        private void Test()
-        {
-            GreenStandCubesR1 = new ObservableCollection<BitmapImage>() { GetImage(CubeTypeEnum.White), null, null };
+            foreach (var stand in GreenStandCubes)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    stand[i] = null;
+                }
+            }
+            foreach (var stand in RedStandCubes)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    stand[i] = null;
+                }
+            }
         }
 
         private BitmapImage GetImage(string cube)

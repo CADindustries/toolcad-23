@@ -70,6 +70,7 @@
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\MyExtensions.cs" />
     <Compile Include="Models\UIFactory.cs" />
+    <Compile Include="Models\Vector2Int.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Commands\DelegateCommand.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />

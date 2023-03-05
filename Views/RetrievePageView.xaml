@@ -36,17 +36,17 @@
             <Border Background="Transparent" BorderThickness="2" BorderBrush="#9a67ea" CornerRadius="14" Grid.Column="1" Grid.Row="1" Margin="12"/>
 
             <retrieveViews:RetrieveControlView Grid.Column="0" Grid.Row="0" Margin="14" 
-                                               GreenStandCubesCollection="{Binding GreenStandCubesR1}" 
-                                               RedStandCubesCollection="{Binding RedStandCubesR1}"/>
+                                               GreenStandCubesCollection="{Binding GreenStandCubes[0]}" 
+                                               RedStandCubesCollection="{Binding RedStandCubes[0]}"/>
             <retrieveViews:RetrieveControlView Grid.Column="1" Grid.Row="0" Margin="14"
-                                               GreenStandCubesCollection="{Binding GreenStandCubesR2}" 
-                                               RedStandCubesCollection="{Binding RedStandCubesR2}"/>
+                                               GreenStandCubesCollection="{Binding GreenStandCubes[1]}" 
+                                               RedStandCubesCollection="{Binding RedStandCubes[1]}"/>
             <retrieveViews:RetrieveControlView Grid.Column="0" Grid.Row="1" Margin="14"
-                                               GreenStandCubesCollection="{Binding GreenStandCubesR3}" 
-                                               RedStandCubesCollection="{Binding RedStandCubesR3}"/>
+                                               GreenStandCubesCollection="{Binding GreenStandCubes[2]}" 
+                                               RedStandCubesCollection="{Binding RedStandCubes[2]}"/>
             <retrieveViews:RetrieveControlView Grid.Column="1" Grid.Row="1" Margin="14"
-                                               GreenStandCubesCollection="{Binding GreenStandCubesR4}" 
-                                               RedStandCubesCollection="{Binding RedStandCubesR4}"/>
+                                               GreenStandCubesCollection="{Binding GreenStandCubes[3]}" 
+                                               RedStandCubesCollection="{Binding RedStandCubes[3]}"/>
         </Grid>
         <StackPanel Grid.Column="1" VerticalAlignment="Center">
             <TextBox Style="{StaticResource InputBoxRounded}" Margin="14, 10" Text="{Binding YellowText}"
