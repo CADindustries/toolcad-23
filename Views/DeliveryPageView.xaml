@@ -4,11 +4,61 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:toolcad23.Views"
+      xmlns:deliveryViews="clr-namespace:toolcad23.Views.OtherViews.DeliveryViews"
+      xmlns:viewModels="clr-namespace:toolcad23.ViewModels"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DeliveryPageView">
 
+    <Page.DataContext>
+        <viewModels:DeliveryPageViewModel/>
+    </Page.DataContext>
+
     <Grid>
-        <TextBlock Text="QWERTY123" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" Foreground="AliceBlue"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Background="Transparent" BorderThickness="2" BorderBrush="#9a67ea" CornerRadius="14" Grid.Column="0" Grid.Row="0" Margin="12"/>
+            <Border Background="Transparent" BorderThickness="2" BorderBrush="#9a67ea" CornerRadius="14" Grid.Column="1" Grid.Row="0" Margin="12"/>
+            <Border Background="Transparent" BorderThickness="2" BorderBrush="#9a67ea" CornerRadius="14" Grid.Column="0" Grid.Row="1" Margin="12"/>
+            <Border Background="Transparent" BorderThickness="2" BorderBrush="#9a67ea" CornerRadius="14" Grid.Column="1" Grid.Row="1" Margin="12"/>
+
+            <deliveryViews:DeliveryControlView Grid.Column="0" Grid.Row="0" Margin="18" QRCodeImage="{Binding QRCodeImages[0]}" QRCodeText="{Binding QRCodeTexts[0]}"/>
+            <deliveryViews:DeliveryControlView Grid.Column="1" Grid.Row="0" Margin="18" QRCodeImage="{Binding QRCodeImages[1]}" QRCodeText="{Binding QRCodeTexts[1]}"/>
+            <deliveryViews:DeliveryControlView Grid.Column="0" Grid.Row="1" Margin="18" QRCodeImage="{Binding QRCodeImages[2]}" QRCodeText="{Binding QRCodeTexts[2]}"/>
+            <deliveryViews:DeliveryControlView Grid.Column="1" Grid.Row="1" Margin="18" QRCodeImage="{Binding QRCodeImages[3]}" QRCodeText="{Binding QRCodeTexts[3]}"/>
+        </Grid>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+            <TextBox Style="{StaticResource InputBoxRounded}" Margin="14, 10" Text="{Binding YellowText}"
+                     HorizontalAlignment="Stretch" MaxLength="1" Padding="6" MaxWidth="200"
+                     materialDesign:HintAssist.Hint="Кол-во жёлтых" BorderThickness="2" BorderBrush="#9a67ea"/>
+            <TextBox Style="{StaticResource InputBoxRounded}" Margin="14, 10" Text="{Binding WhiteText}"
+                     HorizontalAlignment="Stretch" MaxLength="1" Padding="6" MaxWidth="200"
+                     materialDesign:HintAssist.Hint="Кол-во белых" BorderThickness="2" BorderBrush="#9a67ea"/>
+            <TextBox Style="{StaticResource InputBoxRounded}" Margin="14, 10, 14, 35" Text="{Binding BlueText}"
+                     HorizontalAlignment="Stretch" MaxLength="1" Padding="6" MaxWidth="200"
+                     materialDesign:HintAssist.Hint="Кол-во синих" BorderThickness="2" BorderBrush="#9a67ea"/>
+
+            <TextBox Style="{StaticResource InputBoxRounded}" Margin="14, 10" Text="{Binding MaxRedText}"
+                     HorizontalAlignment="Stretch" MaxLength="1" Padding="6" MaxWidth="200"
+                     materialDesign:HintAssist.Hint="MAX на красном" BorderThickness="2" BorderBrush="#9a67ea"/>
+            <TextBox Style="{StaticResource InputBoxRounded}" Margin="14, 10, 14, 35" Text="{Binding MaxGreenText}"
+                     HorizontalAlignment="Stretch" MaxLength="1" Padding="6" MaxWidth="200"
+                     materialDesign:HintAssist.Hint="MAX на зеленом" BorderThickness="2" BorderBrush="#9a67ea"/>
+
+            <Button Style="{StaticResource ButtonRounded}" Content="Зарандомить" Margin="14, 10" MaxWidth="200" Command="{Binding RandomizeCommand}"/>
+        </StackPanel>
     </Grid>
 </Page>

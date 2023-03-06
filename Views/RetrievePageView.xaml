@@ -35,16 +35,16 @@
             <Border Background="Transparent" BorderThickness="2" BorderBrush="#9a67ea" CornerRadius="14" Grid.Column="0" Grid.Row="1" Margin="12"/>
             <Border Background="Transparent" BorderThickness="2" BorderBrush="#9a67ea" CornerRadius="14" Grid.Column="1" Grid.Row="1" Margin="12"/>
 
-            <retrieveViews:RetrieveControlView Grid.Column="0" Grid.Row="0" Margin="14" 
+            <retrieveViews:RetrieveControlView Grid.Column="0" Grid.Row="0" Margin="18" 
                                                GreenStandCubesCollection="{Binding GreenStandCubes[0]}" 
                                                RedStandCubesCollection="{Binding RedStandCubes[0]}"/>
-            <retrieveViews:RetrieveControlView Grid.Column="1" Grid.Row="0" Margin="14"
+            <retrieveViews:RetrieveControlView Grid.Column="1" Grid.Row="0" Margin="18"
                                                GreenStandCubesCollection="{Binding GreenStandCubes[1]}" 
                                                RedStandCubesCollection="{Binding RedStandCubes[1]}"/>
-            <retrieveViews:RetrieveControlView Grid.Column="0" Grid.Row="1" Margin="14"
+            <retrieveViews:RetrieveControlView Grid.Column="0" Grid.Row="1" Margin="18"
                                                GreenStandCubesCollection="{Binding GreenStandCubes[2]}" 
                                                RedStandCubesCollection="{Binding RedStandCubes[2]}"/>
-            <retrieveViews:RetrieveControlView Grid.Column="1" Grid.Row="1" Margin="14"
+            <retrieveViews:RetrieveControlView Grid.Column="1" Grid.Row="1" Margin="18"
                                                GreenStandCubesCollection="{Binding GreenStandCubes[3]}" 
                                                RedStandCubesCollection="{Binding RedStandCubes[3]}"/>
         </Grid>

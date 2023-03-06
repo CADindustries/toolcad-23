@@ -15,13 +15,6 @@ namespace toolcad23.ViewModels
 {
     internal class MainWindowViewModel : BaseViewModel
     {
-        private BitmapImage logoImage;
-        public BitmapImage LogoImage
-        {
-            get { return logoImage; }
-            set { logoImage = value; OnPropertyChanged(); }
-        }
-
         private WindowState currentWindowState;
         public WindowState CurrentWindowState
         {
@@ -89,7 +82,6 @@ namespace toolcad23.ViewModels
 
             OnStateChanged(WindowState.Normal);
             OnActionChanged(false);
-            SetLogoImage();
 
             GoToPage(UIFactory.GetInfoPageView());
 
@@ -99,11 +91,6 @@ namespace toolcad23.ViewModels
         private void OnStaticAllDoneChanged(object sender, EventArgs e)
         {
             OnActionChanged(MainWindowModel.IsAllDone);
-        }
-
-        private void SetLogoImage()
-        {
-            LogoImage = MainWindowModel.GetLogoImage();
         }
 
         private void GoToPage(Page page)

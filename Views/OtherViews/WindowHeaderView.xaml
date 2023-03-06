@@ -151,6 +151,7 @@
 		    Grid.Column="6"
 		    Command="{Binding MinimizeWindowCommand, ElementName=windowHeaderView}"
             CommandParameter="{Binding WindowParameter, ElementName=windowHeaderView}"
+            Visibility="{Binding MinimizeButtonVisibility, ElementName=windowHeaderView}"
 		    RenderOptions.EdgeMode="Aliased"
 		    Style="{StaticResource TitleBarButtonStyle}">
             <Path

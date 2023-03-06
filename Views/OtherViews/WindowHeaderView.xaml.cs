@@ -20,14 +20,14 @@ namespace toolcad23.Views.OtherViews
     /// </summary>
     public partial class WindowHeaderView : UserControl
     {
-        public BitmapImage LogoImage
+        public string LogoImage
         {
-            get { return (BitmapImage)GetValue(LogoImageProperty); }
+            get { return (string)GetValue(LogoImageProperty); }
             set { SetValue(LogoImageProperty, value); }
         }
 
         public static readonly DependencyProperty LogoImageProperty =
-            DependencyProperty.Register("LogoImage", typeof(BitmapImage), typeof(WindowHeaderView));
+            DependencyProperty.Register("LogoImage", typeof(string), typeof(WindowHeaderView));
 
         public string ProductName
         {
@@ -82,6 +82,15 @@ namespace toolcad23.Views.OtherViews
 
         public static readonly DependencyProperty CloseWindowCommandProperty =
             DependencyProperty.Register("CloseWindowCommand", typeof(ICommand), typeof(WindowHeaderView));
+
+        public Visibility MinimizeButtonVisibility
+        {
+            get { return (Visibility)GetValue(MinimizeButtonVisibilityProperty); }
+            set { SetValue(MinimizeButtonVisibilityProperty, value); }
+        }
+
+        public static readonly DependencyProperty MinimizeButtonVisibilityProperty =
+            DependencyProperty.Register("MinimizeButtonVisibility", typeof(Visibility), typeof(WindowHeaderView));
 
         public Visibility MaximizeButtonVisibility
         {

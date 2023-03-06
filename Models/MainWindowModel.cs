@@ -17,10 +17,5 @@ namespace toolcad23.Models
             get { return isAllDone; }
             set { isAllDone = value; IsAllDoneChanged?.Invoke(null, EventArgs.Empty); }
         }
-
-        internal static BitmapImage GetLogoImage()
-        {
-            return new BitmapImage(new Uri("pack://application:,,,/Resources/logo_tc23.png"));
-        }
     }
 }

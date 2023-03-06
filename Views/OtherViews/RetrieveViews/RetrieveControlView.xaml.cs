@@ -18,9 +18,6 @@ using toolcad23.Models;
 
 namespace toolcad23.Views.OtherViews.RetrieveViews
 {
-    /// <summary>
-    /// Interaction logic for RetrieveControlView.xaml
-    /// </summary>
     public partial class RetrieveControlView : UserControl
     {
         public ObservableCollection<BitmapImage> RedStandCubesCollection

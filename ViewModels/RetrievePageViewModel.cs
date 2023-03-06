@@ -69,7 +69,6 @@ namespace toolcad23.ViewModels
         }
 
         #region Randomizing
-
         async private void Randomize(object parameter)
         {
             if (!int.TryParse(YellowText, out int parsedYellow))
@@ -226,7 +225,6 @@ namespace toolcad23.ViewModels
             places.Shuffle();
             return places;
         }
-
         #endregion
 
         private void SetDefaults()
