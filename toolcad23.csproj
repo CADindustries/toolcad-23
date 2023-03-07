@@ -93,6 +93,9 @@
     <Compile Include="Views\OtherViews\RetrieveViews\RetrieveControlView.xaml.cs">
       <DependentUpon>RetrieveControlView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OtherViews\RightPanelControlView.xaml.cs">
+      <DependentUpon>RightPanelControlView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OtherViews\WindowHeaderView.xaml.cs">
       <DependentUpon>WindowHeaderView.xaml</DependentUpon>
     </Compile>
@@ -124,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OtherViews\RetrieveViews\RetrieveControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OtherViews\RightPanelControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

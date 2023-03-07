@@ -103,12 +103,12 @@ namespace toolcad23.ViewModels
                 return;
             }
 
-            if (parsedMaxGreen < (parsedWhite + parsedBlue) / 4)
+            if (parsedMaxGreen < (parsedWhite + parsedBlue) / 4.0)
             {
                 MessageBox.Show("Белых и синих кубов больше, чем максимально допустимое");
                 return;
             }
-            if (parsedMaxRed < parsedYellow / 4)
+            if (parsedMaxRed < parsedYellow / 4.0)
             {
                 MessageBox.Show("Жёлтых кубов больше, чем максимально допустимое");
                 return;
