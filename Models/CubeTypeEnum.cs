@@ -8,9 +8,9 @@ namespace toolcad23.Models
 {
     public class CubeTypeEnum
     {
-        public const string None = "empty_cube.png";
-        public const string White = "white_cube.png";
-        public const string Blue = "blue_cube.png";
-        public const string Yellow = "yellow_cube.png";
+        public const string None = "empty";
+        public const string White = "white";
+        public const string Blue = "blue";
+        public const string Yellow = "yellow";
     }
 }

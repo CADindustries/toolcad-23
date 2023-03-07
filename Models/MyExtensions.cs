@@ -26,6 +26,20 @@ namespace toolcad23.Models
             }
         }
 
+        public static void RandomlyAdd<T>(this IList<T> list, T newElement)
+        {
+            if (list.Count > 0)
+            {
+                RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
+                byte[] box = new byte[1];
+                provider.GetBytes(box);
+                int k = box[0] % list.Count;
+                list.Insert(k, newElement);
+                return;
+            }
+            list.Add(newElement);
+        }
+
         public static T Pop<T>(this IList<T> list, int index)
         {
             T r = list[index];
