@@ -73,44 +73,44 @@ namespace toolcad23.ViewModels
         {
             if (!int.TryParse(YellowText, out int parsedYellow))
             {
-                MessageBox.Show("Неверный формат в \"Кол-во жёлтых\"");
+                MessageBoxFactory.Show("Неверный формат в \"Кол-во жёлтых\"");
                 return;
             }
             if (!int.TryParse(WhiteText, out int parsedWhite))
             {
-                MessageBox.Show("Неверный формат в \"Кол-во белых\"");
+                MessageBoxFactory.Show("Неверный формат в \"Кол-во белых\"");
                 return;
             }
             if (!int.TryParse(BlueText, out int parsedBlue))
             {
-                MessageBox.Show("Неверный формат в \"Кол-во синих\"");
+                MessageBoxFactory.Show("Неверный формат в \"Кол-во синих\"");
                 return;
             }
             if (!int.TryParse(MaxRedText, out int parsedMaxRed))
             {
-                MessageBox.Show("Неверный формат в \"MAX на красном\"");
+                MessageBoxFactory.Show("Неверный формат в \"MAX на красном\"");
                 return;
             }
             if (!int.TryParse(MaxGreenText, out int parsedMaxGreen))
             {
-                MessageBox.Show("Неверный формат в \"MAX на зеленом\"");
+                MessageBoxFactory.Show("Неверный формат в \"MAX на зеленом\"");
                 return;
             }
 
             if (parsedMaxGreen > 3 || parsedMaxRed > 3)
             {
-                MessageBox.Show("Максимально допустимое кол-во кубов в комнате не должно превосходить 3");
+                MessageBoxFactory.Show("Максимально допустимое кол-во кубов в комнате не должно превосходить 3");
                 return;
             }
 
-            if (parsedMaxGreen < (parsedWhite + parsedBlue) / 4)
+            if (parsedMaxGreen < (parsedWhite + parsedBlue) / 4.0)
             {
-                MessageBox.Show("Белых и синих кубов больше, чем максимально допустимое");
+                MessageBoxFactory.Show("Белых и синих кубов больше, чем максимально допустимое");
                 return;
             }
-            if (parsedMaxRed < parsedYellow / 4)
+            if (parsedMaxRed < parsedYellow / 4.0)
             {
-                MessageBox.Show("Жёлтых кубов больше, чем максимально допустимое");
+                MessageBoxFactory.Show("Жёлтых кубов больше, чем максимально допустимое");
                 return;
             }
 
