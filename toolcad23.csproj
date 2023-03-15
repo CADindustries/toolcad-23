@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo_tc23.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MaterialDesignColors, Version=2.1.2.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.2.1.2\lib\net462\MaterialDesignColors.dll</HintPath>
@@ -67,14 +70,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\CubeTypeEnum.cs" />
-    <Compile Include="Models\MainWindowModel.cs" />
+    <Compile Include="Models\Classes\CubeTypeEnum.cs" />
+    <Compile Include="Models\DeliveryPageModel.cs" />
     <Compile Include="Models\MessageBoxFactory.cs" />
     <Compile Include="Models\MyExtensions.cs" />
-    <Compile Include="Models\RandomHelper.cs" />
+    <Compile Include="Models\Helpers\RandomHelper.cs" />
+    <Compile Include="Models\RetrievePageModel.cs" />
     <Compile Include="Models\UIFactory.cs" />
     <Compile Include="Models\ValidationRules\IsIntegerValidationRule.cs" />
-    <Compile Include="Models\Vector2Int.cs" />
+    <Compile Include="Models\Classes\Vector2Int.cs" />
+    <Compile Include="Models\Helpers\WaiterHelper.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Commands\DelegateCommand.cs" />
     <Compile Include="ViewModels\DeliveryPageViewModel.cs" />
@@ -224,6 +229,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\QRCodes\no_qr.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo_tc23.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets')" />

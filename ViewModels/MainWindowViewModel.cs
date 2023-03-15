@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using toolcad23.Models;
+using toolcad23.Models.Helpers;
 using toolcad23.ViewModels.Commands;
 
 namespace toolcad23.ViewModels
@@ -78,19 +79,20 @@ namespace toolcad23.ViewModels
             RestoreWindowCommand = new DelegateCommand(OnRestoreWindowCommand);
             CloseWindowCommand = new DelegateCommand(OnCloseWindowCommand);
 
-            MainWindowModel.IsAllDoneChanged += OnStaticAllDoneChanged;
+            WaiterHelper.CollectionChanged += OnStaticAllDoneChanged;
+            WaiterHelper.AddWaiter();
 
             OnStateChanged(WindowState.Normal);
             OnActionChanged(false);
 
             GoToPage(UIFactory.GetInfoPageView());
 
-            MainWindowModel.IsAllDone = true;
+            WaiterHelper.RemoveWaiter();
         }
 
         private void OnStaticAllDoneChanged(object sender, EventArgs e)
         {
-            OnActionChanged(MainWindowModel.IsAllDone);
+            OnActionChanged(WaiterHelper.GetWaiterStatus());
         }
 
         private void GoToPage(Page page)
