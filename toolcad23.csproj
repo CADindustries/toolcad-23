@@ -70,14 +70,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\CubeTypeEnum.cs" />
-    <Compile Include="Models\MainWindowModel.cs" />
+    <Compile Include="Models\Classes\CubeTypeEnum.cs" />
+    <Compile Include="Models\DeliveryPageModel.cs" />
     <Compile Include="Models\MessageBoxFactory.cs" />
     <Compile Include="Models\MyExtensions.cs" />
-    <Compile Include="Models\RandomHelper.cs" />
+    <Compile Include="Models\Helpers\RandomHelper.cs" />
+    <Compile Include="Models\RetrievePageModel.cs" />
     <Compile Include="Models\UIFactory.cs" />
     <Compile Include="Models\ValidationRules\IsIntegerValidationRule.cs" />
-    <Compile Include="Models\Vector2Int.cs" />
+    <Compile Include="Models\Classes\Vector2Int.cs" />
+    <Compile Include="Models\Helpers\WaiterHelper.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Commands\DelegateCommand.cs" />
     <Compile Include="ViewModels\DeliveryPageViewModel.cs" />

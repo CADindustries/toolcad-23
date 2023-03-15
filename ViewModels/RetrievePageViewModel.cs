@@ -11,14 +11,14 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using toolcad23.Models;
+using toolcad23.Models.Classes;
+using toolcad23.Models.Helpers;
 using toolcad23.ViewModels.Commands;
 
 namespace toolcad23.ViewModels
 {
     internal class RetrievePageViewModel : BaseViewModel
     {
-        private static readonly string imagePath = "pack://application:,,,/Resources/";
-
         public ObservableCollection<ObservableCollection<BitmapImage>> GreenStandCubes { get; set; }
         public ObservableCollection<ObservableCollection<BitmapImage>> RedStandCubes { get; set; }
 
@@ -114,7 +114,7 @@ namespace toolcad23.ViewModels
                 return;
             }
 
-            MainWindowModel.IsAllDone = false;
+            WaiterHelper.AddWaiter();
 
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -123,27 +123,8 @@ namespace toolcad23.ViewModels
 
             await Task.Run(() =>
             {
-                List<Vector2Int> allowedGreenList = RandomHelper.GenerateAllowedList(parsedMaxGreen);
-                List<Vector2Int> allowedRedList = RandomHelper.GenerateAllowedList(parsedMaxRed);
-
-                List<string> greenStandElements = RandomHelper.GenerateRandomElements(parsedWhite, parsedBlue);
-                List<string> redStandElements = Enumerable.Repeat(CubeTypeEnum.Yellow, parsedYellow).ToList();
-
-                Dictionary<Vector2Int, string> greenStandCubes = new Dictionary<Vector2Int, string>();
-                Dictionary<Vector2Int, string> redStandCubes = new Dictionary<Vector2Int, string>();
-
-                while (greenStandElements.Count > 0)
-                {
-                    greenStandCubes.Add(allowedGreenList.Pop(0), greenStandElements.Pop(0));
-                }
-
-                while (redStandElements.Count > 0)
-                {
-                    redStandCubes.Add(allowedRedList.Pop(0), redStandElements.Pop(0));
-                }
-
-                RandomHelper.LowDownCubes(greenStandCubes);
-                RandomHelper.LowDownCubes(redStandCubes);
+                var greenStandCubes = RetrievePageModel.GenerateRandomGreenDictionary(parsedMaxGreen, parsedWhite, parsedBlue);
+                var redStandCubes = RetrievePageModel.GenerateRandomRedDictionary(parsedMaxRed, parsedYellow);
 
                 Application.Current.Dispatcher.Invoke(() =>
                 {
@@ -152,7 +133,7 @@ namespace toolcad23.ViewModels
                 });
             });
 
-            MainWindowModel.IsAllDone = true;
+            WaiterHelper.RemoveWaiter();
         }
 
         private void FillUpBitmapList(Dictionary<Vector2Int, string> standCubes, bool isGreen)
@@ -163,7 +144,7 @@ namespace toolcad23.ViewModels
                 var currentRoomElements = standCubes.Where(x => x.Key.X == i).ToList();
                 foreach (var currentElement in currentRoomElements)
                 {
-                    collection[currentElement.Key.Y] = GetImage(currentElement.Value);
+                    collection[currentElement.Key.Y] = RetrievePageModel.GetImage(currentElement.Value);
                 }
             }
         }
@@ -213,11 +194,6 @@ namespace toolcad23.ViewModels
                     stand[i] = null;
                 }
             }
-        }
-
-        private BitmapImage GetImage(string cube)
-        {
-            return new BitmapImage(new Uri(imagePath + cube + "_cube.png"));
-        }        
+        }       
     }
 }
