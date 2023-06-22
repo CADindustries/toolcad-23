@@ -14,7 +14,12 @@ namespace toolcad23.Models
     {
         private static readonly string imagePath = "pack://application:,,,/Resources/QRCodes/";
 
-        internal static List<List<string>> GenerateRandomStrings(int maxGreen, int maxRed, int white, int blue, int yellow)
+        public DeliveryPageModel() 
+        {
+            
+        }
+
+        internal List<List<string>> GenerateRandomStrings(int maxGreen, int maxRed, int white, int blue, int yellow)
         {
             List<Vector2Int> allowedGreenList = RandomHelper.GenerateAllowedList(maxGreen);
             List<Vector2Int> allowedRedList = RandomHelper.GenerateAllowedList(maxRed);
@@ -41,7 +46,7 @@ namespace toolcad23.Models
             return GenerateStringLists(greenStandCubes, redStandCubes);
         }
 
-        private static List<List<string>> GenerateStringLists(Dictionary<Vector2Int, string> green, Dictionary<Vector2Int, string> red)
+        private List<List<string>> GenerateStringLists(Dictionary<Vector2Int, string> green, Dictionary<Vector2Int, string> red)
         {
             List<List<string>> strings = new List<List<string>>()
             {
@@ -64,7 +69,7 @@ namespace toolcad23.Models
             return strings;
         }
 
-        internal static BitmapImage GetImage(List<string> cubes)
+        internal BitmapImage GetImage(List<string> cubes)
         {
             if (cubes.Count > 0)
             {
@@ -82,7 +87,7 @@ namespace toolcad23.Models
             return new BitmapImage(new Uri(imagePath + "empty_qr.png"));
         }
 
-        internal static string GetText(List<string> cubes)
+        internal string GetText(List<string> cubes)
         {
             if (cubes.Count > 0)
             {

@@ -20,23 +20,23 @@ namespace toolcad23.Views.OtherViews.RetrieveViews
 {
     public partial class RetrieveControlView : UserControl
     {
-        public ObservableCollection<BitmapImage> RedStandCubesCollection
+        public ReadOnlyObservableCollection<BitmapImage> RedStandCubesCollection
         {
-            get { return (ObservableCollection<BitmapImage>)GetValue(RedStandCubesCollectionProperty); }
+            get { return (ReadOnlyObservableCollection<BitmapImage>)GetValue(RedStandCubesCollectionProperty); }
             set { SetValue(RedStandCubesCollectionProperty, value); }
         }
 
         public static readonly DependencyProperty RedStandCubesCollectionProperty =
-            DependencyProperty.Register("RedStandCubesCollection", typeof(ObservableCollection<BitmapImage>), typeof(RetrieveControlView));
+            DependencyProperty.Register("RedStandCubesCollection", typeof(ReadOnlyObservableCollection<BitmapImage>), typeof(RetrieveControlView));
 
-        public ObservableCollection<BitmapImage> GreenStandCubesCollection
+        public ReadOnlyObservableCollection<BitmapImage> GreenStandCubesCollection
         {
-            get { return (ObservableCollection<BitmapImage>)GetValue(GreenStandCubesCollectionProperty); }
+            get { return (ReadOnlyObservableCollection<BitmapImage>)GetValue(GreenStandCubesCollectionProperty); }
             set { SetValue(GreenStandCubesCollectionProperty, value); }
         }
 
         public static readonly DependencyProperty GreenStandCubesCollectionProperty =
-            DependencyProperty.Register("GreenStandCubesCollection", typeof(ObservableCollection<BitmapImage>), typeof(RetrieveControlView));
+            DependencyProperty.Register("GreenStandCubesCollection", typeof(ReadOnlyObservableCollection<BitmapImage>), typeof(RetrieveControlView));
 
         public RetrieveControlView()
         {

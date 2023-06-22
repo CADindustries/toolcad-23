@@ -11,57 +11,66 @@ using System.Windows.Media.Imaging;
 using toolcad23.Models;
 using toolcad23.Models.Helpers;
 using toolcad23.Models.Classes;
-using toolcad23.ViewModels.Commands;
+using Prism.Mvvm;
+using Prism.Commands;
 
 namespace toolcad23.ViewModels
 {
-    internal class DeliveryPageViewModel : BaseViewModel
+    internal class DeliveryPageViewModel : BindableBase
     {
         public ObservableCollection<BitmapImage> QRCodeImages { get; set; }
         public ObservableCollection<string> QRCodeTexts { get; set; }
 
-        private string yellowText;
-        public string YellowText
+        private int yellowText;
+        public int YellowText
         {
             get { return yellowText; }
-            set { yellowText = value; OnPropertyChanged(); }
+            set { SetProperty(ref yellowText, value); }
         }
 
-        private string whiteText;
-        public string WhiteText
+        private int whiteText;
+        public int WhiteText
         {
             get { return whiteText; }
-            set { whiteText = value; OnPropertyChanged(); }
+            set { SetProperty(ref whiteText, value); }
         }
 
-        private string blueText;
-        public string BlueText
+        private int blueText;
+        public int BlueText
         {
             get { return blueText; }
-            set { blueText = value; OnPropertyChanged(); }
+            set { SetProperty(ref blueText, value); }
         }
 
-        private string maxRedText;
-        public string MaxRedText
+        private int maxRedText;
+        public int MaxRedText
         {
             get { return maxRedText; }
-            set { maxRedText = value; OnPropertyChanged(); }
+            set { SetProperty(ref maxRedText, value); }
         }
 
-        private string maxGreenText;
-        public string MaxGreenText
+        private int maxGreenText;
+        public int MaxGreenText
         {
             get { return maxGreenText; }
-            set { maxGreenText = value; OnPropertyChanged(); }
+            set { SetProperty(ref maxGreenText, value); }
         }
 
         #region Commands
         public ICommand RandomizeCommand { get; set; }
         #endregion
 
-        #region Randomizing
-        async private void Randomize(object parameter)
+        internal DeliveryPageViewModel()
         {
+            RandomizeCommand = new DelegateCommand(Randomize);
+            SetUpAll();
+            SetDefaults();
+        }
+
+        #region Randomizing
+        async private void Randomize()
+        {
+
             if (!int.TryParse(YellowText, out int parsedYellow))
             {
                 MessageBoxFactory.Show("Неверный формат в \"Кол-во жёлтых\"");
@@ -133,14 +142,7 @@ namespace toolcad23.ViewModels
                 QRCodeTexts[i] = DeliveryPageModel.GetText(strings[i]);
             }
         }
-        #endregion
-
-        internal DeliveryPageViewModel()
-        {
-            RandomizeCommand = new DelegateCommand(Randomize);
-            SetUpAll();
-            SetDefaults();
-        }
+        #endregion        
 
         private void SetDefaults()
         {
