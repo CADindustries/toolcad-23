@@ -7,8 +7,18 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:otherViews="clr-namespace:toolcad23.Views.OtherViews"
         xmlns:viewModels="clr-namespace:toolcad23.ViewModels"
-        mc:Ignorable="d" x:Name="ThisWindow" WindowStyle="None" SourceInitialized="Window_SourceInitialized"
-        Title="MainWindow" Height="600" Width="800" WindowState="{Binding CurrentWindowState, Mode=TwoWay}">
+        mc:Ignorable="d"
+        x:Name="ThisWindow"
+        WindowStyle="None"
+        SourceInitialized="Window_SourceInitialized"
+        Loaded="ThisWindow_Loaded"
+        Title="MainWindow"
+        Height="600"
+        Width="800"
+        WindowState="{Binding CurrentWindowState, Mode=TwoWay}"
+        Opacity="0"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen">
 
     <Window.DataContext>
         <viewModels:MainWindowViewModel/>

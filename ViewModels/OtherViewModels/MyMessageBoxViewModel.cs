@@ -1,21 +1,22 @@
-﻿using System;
+﻿using Prism.Commands;
+using Prism.Mvvm;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using toolcad23.ViewModels.Commands;
 
 namespace toolcad23.ViewModels.OtherViewModels
 {
-    internal class MyMessageBoxViewModel : BaseViewModel
+    internal class MyMessageBoxViewModel : BindableBase
     {
         private string messageText;
         public string MessageText
         {
             get { return messageText; }
-            set { messageText = value; OnPropertyChanged(); }
+            set { SetProperty(ref messageText, value); }
         }
 
         #region Commands
@@ -26,7 +27,7 @@ namespace toolcad23.ViewModels.OtherViewModels
 
         internal MyMessageBoxViewModel(string msg)
         {
-            CloseWindowCommand = new DelegateCommand(OnCloseWindowCommand);
+            CloseWindowCommand = new DelegateCommand<object>(OnCloseWindowCommand);
             MessageText = msg;
         }
 

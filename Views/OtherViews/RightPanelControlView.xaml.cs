@@ -68,6 +68,22 @@ namespace toolcad23.Views.OtherViews
         public static readonly DependencyProperty RandomizeCommandProperty =
             DependencyProperty.Register("RandomizeCommand", typeof(ICommand), typeof(RightPanelControlView));
 
+        public ICommand SavePictureCommand
+        {
+            get { return (ICommand)GetValue(SavePictureCommandProperty); }
+            set { SetValue(SavePictureCommandProperty, value); }
+        }
+        public static readonly DependencyProperty SavePictureCommandProperty =
+            DependencyProperty.Register("SavePictureCommand", typeof(ICommand), typeof(RightPanelControlView));
+
+        public object SavePictureParameter
+        {
+            get { return (object)GetValue(SavePictureParameterProperty); }
+            set { SetValue(SavePictureParameterProperty, value); }
+        }
+        public static readonly DependencyProperty SavePictureParameterProperty =
+            DependencyProperty.Register("SavePictureParameter", typeof(object), typeof(RightPanelControlView));
+
         public RightPanelControlView()
         {
             InitializeComponent();

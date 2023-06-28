@@ -46,5 +46,13 @@ namespace toolcad23.Models
             list.RemoveAt(index);
             return r;
         }
+
+        public static void Reset<T>(this IList<T> list)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                list[i] = default;
+            }
+        }
     }
 }

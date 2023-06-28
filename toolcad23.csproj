@@ -49,6 +49,9 @@
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
+    <Reference Include="Prism, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.8.1.97\lib\net47\Prism.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -72,21 +75,17 @@
     </ApplicationDefinition>
     <Compile Include="Models\Classes\CubeTypeEnum.cs" />
     <Compile Include="Models\DeliveryPageModel.cs" />
+    <Compile Include="Models\Helpers\Functions.cs" />
     <Compile Include="Models\MessageBoxFactory.cs" />
     <Compile Include="Models\MyExtensions.cs" />
     <Compile Include="Models\Helpers\RandomHelper.cs" />
     <Compile Include="Models\RetrievePageModel.cs" />
     <Compile Include="Models\UIFactory.cs" />
-    <Compile Include="Models\ValidationRules\IsIntegerValidationRule.cs" />
     <Compile Include="Models\Classes\Vector2Int.cs" />
     <Compile Include="Models\Helpers\WaiterHelper.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\Commands\DelegateCommand.cs" />
     <Compile Include="ViewModels\DeliveryPageViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\OtherViewModels\DeliveryViewModels\DeliveryControlViewModel.cs" />
     <Compile Include="ViewModels\OtherViewModels\MyMessageBoxViewModel.cs" />
-    <Compile Include="ViewModels\OtherViewModels\RetrieveViewModels\RetrieveControlViewModel.cs" />
     <Compile Include="ViewModels\RetrievePageViewModel.cs" />
     <Compile Include="Views\DeliveryPageView.xaml.cs">
       <DependentUpon>DeliveryPageView.xaml</DependentUpon>
@@ -99,6 +98,9 @@
     </Compile>
     <Compile Include="Views\OtherViews\MyMessageBox.xaml.cs">
       <DependentUpon>MyMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OtherViews\PreviewWindowView.xaml.cs">
+      <DependentUpon>PreviewWindowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OtherViews\RetrieveViews\RetrieveControlView.xaml.cs">
       <DependentUpon>RetrieveControlView.xaml</DependentUpon>
@@ -137,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OtherViews\MyMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OtherViews\PreviewWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,6 +238,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="logo_tc23.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\cad_video_2.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets')" />
