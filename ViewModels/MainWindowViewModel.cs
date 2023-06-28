@@ -3,6 +3,7 @@ using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -80,20 +81,17 @@ namespace toolcad23.ViewModels
             RestoreWindowCommand = new DelegateCommand<object>(OnRestoreWindowCommand);
             CloseWindowCommand = new DelegateCommand<object>(OnCloseWindowCommand);
 
-            WaiterHelper.CollectionChanged += OnStaticAllDoneChanged;
+            WaiterHelper.CollectionChanged += (s, a) => 
+            {
+                ProgressBarVisibility = WaiterHelper.GetWaiterStatus() ? Visibility.Collapsed : Visibility.Visible;
+                CheckAllDoneVisibility = WaiterHelper.GetWaiterStatus() ? Visibility.Visible : Visibility.Collapsed;
+            };
             WaiterHelper.AddWaiter();
 
             OnStateChanged(WindowState.Normal);
-            OnActionChanged(false);
-
-            GoToPage(UIFactory.GetInfoPageView());
+            TabSelectionChanged(0);
 
             WaiterHelper.RemoveWaiter();
-        }
-
-        private void OnStaticAllDoneChanged(object sender, EventArgs e)
-        {
-            OnActionChanged(WaiterHelper.GetWaiterStatus());
         }
 
         private void GoToPage(Page page)
@@ -125,12 +123,6 @@ namespace toolcad23.ViewModels
                         break;
                     }
             }
-        }
-
-        private void OnActionChanged(bool done)
-        {
-            ProgressBarVisibility = done ? Visibility.Collapsed : Visibility.Visible;
-            CheckAllDoneVisibility = done ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void OnStateChanged(WindowState state)

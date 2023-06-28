@@ -21,7 +21,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="0.3*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0" x:Name="RandomGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -55,6 +55,8 @@
                                           BlueText="{Binding BlueText, Mode=TwoWay}"
                                           MaxRedText="{Binding MaxRedText, Mode=TwoWay}"
                                           MaxGreenText="{Binding MaxGreenText, Mode=TwoWay}"
-                                          RandomizeCommand="{Binding RandomizeCommand}"/>
+                                          RandomizeCommand="{Binding RandomizeCommand}"
+                                          SavePictureCommand="{Binding SavePictureCommand}"
+                                          SavePictureParameter="{Binding ElementName=RandomGrid}"/>
     </Grid>
 </Page>

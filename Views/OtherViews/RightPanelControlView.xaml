@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:toolcad23.Views.OtherViews"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" x:Name="rightPanelControlView">
+             d:DesignHeight="650" d:DesignWidth="210" x:Name="rightPanelControlView">
     <StackPanel>
         <TextBox Style="{StaticResource InputBoxRounded}" Margin="14, 10" Text="{Binding YellowText, ElementName=rightPanelControlView, Mode=TwoWay}"
                      HorizontalAlignment="Stretch" MaxLength="1" Padding="6" MaxWidth="200"
@@ -26,5 +26,14 @@
                      materialDesign:HintAssist.Hint="MAX на зеленом" BorderThickness="2" BorderBrush="#9a67ea"/>
 
         <Button Style="{StaticResource ButtonRounded}" Content="Зарандомить" Margin="14, 10" MaxWidth="200" Command="{Binding RandomizeCommand, ElementName=rightPanelControlView}"/>
+
+        <Button Style="{StaticResource ButtonRounded}"
+                Margin="14, 10"
+                Width="50"
+                Height="50"
+                Command="{Binding SavePictureCommand, ElementName=rightPanelControlView}"
+                CommandParameter="{Binding SavePictureParameter, ElementName=rightPanelControlView}">
+            <materialDesign:PackIcon Kind="PanoramaVariantOutline" Width="34" Height="34"/>
+        </Button>
     </StackPanel>
 </UserControl>

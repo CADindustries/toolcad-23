@@ -1,8 +1,16 @@
-﻿using Prism.Mvvm;
+﻿using Prism.Commands;
+using Prism.Mvvm;
+using System;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using toolcad23.Models;
+using toolcad23.Models.Helpers;
 
 namespace toolcad23.ViewModels
 {
@@ -50,6 +58,7 @@ namespace toolcad23.ViewModels
 
         #region Commands
         public ICommand RandomizeCommand => model.RandomizeCommand;
+        public ICommand SavePictureCommand { get; }
         #endregion
 
         internal RetrievePageViewModel()
@@ -60,6 +69,11 @@ namespace toolcad23.ViewModels
             {
                 MessageBoxFactory.Show(a);
             };
+
+            SavePictureCommand = new DelegateCommand<object>((obj) =>
+            {
+                Functions.CreateBitmapFromVisualAndCopyToClipboard(obj as Visual);
+            });
         }
     }
 }

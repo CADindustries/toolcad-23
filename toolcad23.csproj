@@ -75,6 +75,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\Classes\CubeTypeEnum.cs" />
     <Compile Include="Models\DeliveryPageModel.cs" />
+    <Compile Include="Models\Helpers\Functions.cs" />
     <Compile Include="Models\MessageBoxFactory.cs" />
     <Compile Include="Models\MyExtensions.cs" />
     <Compile Include="Models\Helpers\RandomHelper.cs" />
@@ -97,6 +98,9 @@
     </Compile>
     <Compile Include="Views\OtherViews\MyMessageBox.xaml.cs">
       <DependentUpon>MyMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OtherViews\PreviewWindowView.xaml.cs">
+      <DependentUpon>PreviewWindowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OtherViews\RetrieveViews\RetrieveControlView.xaml.cs">
       <DependentUpon>RetrieveControlView.xaml</DependentUpon>
@@ -135,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OtherViews\MyMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OtherViews\PreviewWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,6 +238,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="logo_tc23.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\cad_video_2.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets')" />

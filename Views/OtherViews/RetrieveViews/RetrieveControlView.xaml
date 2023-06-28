@@ -4,50 +4,112 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:toolcad23.Views.OtherViews.RetrieveViews"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" x:Name="retrieveControlView">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <Image Source="{Binding GreenStandCubesCollection[2], ElementName=retrieveControlView}" Grid.Column="1" Grid.Row="0" 
-               HorizontalAlignment="Center" VerticalAlignment="Center" 
-               RenderOptions.BitmapScalingMode="Fant"/>
+        <Grid x:Name="RedStandGrid" 
+              Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <Image Source="{Binding RedStandCubesCollection[2], ElementName=retrieveControlView}"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   RenderOptions.BitmapScalingMode="Fant" />
 
-        <Image Source="{Binding GreenStandCubesCollection[1], ElementName=retrieveControlView}" Grid.Column="1" Grid.Row="1" 
-               HorizontalAlignment="Center" VerticalAlignment="Center" 
-               RenderOptions.BitmapScalingMode="Fant"/>
+            <Image Source="{Binding RedStandCubesCollection[1], ElementName=retrieveControlView}"
+                   Grid.Column="0"
+                   Grid.Row="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   RenderOptions.BitmapScalingMode="Fant" />
 
-        <Image Source="{Binding GreenStandCubesCollection[0], ElementName=retrieveControlView}" Grid.Column="1" Grid.Row="2" 
-               HorizontalAlignment="Center" VerticalAlignment="Center" 
-               RenderOptions.BitmapScalingMode="Fant"/>
+            <Image Source="{Binding RedStandCubesCollection[0], ElementName=retrieveControlView}"
+                   Grid.Column="0"
+                   Grid.Row="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   RenderOptions.BitmapScalingMode="Fant" />
 
-        <Image Source="/Resources/green_stand.png" Grid.Column="1" Grid.Row="3" 
-               HorizontalAlignment="Center" VerticalAlignment="Center" 
-               RenderOptions.BitmapScalingMode="Fant"/>
+            <Image Source="/Resources/red_stand.png"
+                   Grid.Column="0"
+                   Grid.Row="3"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   RenderOptions.BitmapScalingMode="Fant" />
+        </Grid>
 
-        <Image Source="{Binding RedStandCubesCollection[2], ElementName=retrieveControlView}" Grid.Column="0" Grid.Row="0" 
-               HorizontalAlignment="Center" VerticalAlignment="Center" 
-               RenderOptions.BitmapScalingMode="Fant"/>
+        <Grid x:Name="GreenStandGrid"
+              Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <Image Source="{Binding RedStandCubesCollection[1], ElementName=retrieveControlView}" Grid.Column="0" Grid.Row="1" 
-               HorizontalAlignment="Center" VerticalAlignment="Center" 
-               RenderOptions.BitmapScalingMode="Fant"/>
+            <Image Source="{Binding GreenStandCubesCollection[2], ElementName=retrieveControlView}"
+                   Grid.Column="1"
+                   Grid.Row="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   RenderOptions.BitmapScalingMode="Fant" />
 
-        <Image Source="{Binding RedStandCubesCollection[0], ElementName=retrieveControlView}" Grid.Column="0" Grid.Row="2" 
-               HorizontalAlignment="Center" VerticalAlignment="Center" 
-               RenderOptions.BitmapScalingMode="Fant"/>
+            <Image Source="{Binding GreenStandCubesCollection[1], ElementName=retrieveControlView}"
+                   Grid.Column="1"
+                   Grid.Row="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   RenderOptions.BitmapScalingMode="Fant" />
 
-        <Image Source="/Resources/red_stand.png" Grid.Column="0" Grid.Row="3" 
-               HorizontalAlignment="Center" VerticalAlignment="Center" 
-               RenderOptions.BitmapScalingMode="Fant"/>
+            <Image Source="{Binding GreenStandCubesCollection[0], ElementName=retrieveControlView}"
+                   Grid.Column="1"
+                   Grid.Row="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   RenderOptions.BitmapScalingMode="Fant" />
+
+            <Image Source="/Resources/green_stand.png"
+                   Grid.Column="1"
+                   Grid.Row="3"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   RenderOptions.BitmapScalingMode="Fant" />
+        </Grid>
+
+        <Grid Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="0.25*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <ToggleButton Content="{materialDesign:PackIcon Kind=SwapHorizontal, Size=20}"
+                          Foreground="AliceBlue"
+                          Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+                          ToolTip="Swap stands"
+                          IsChecked="False"
+                          Grid.Row="1"
+                          Grid.Column="1"
+                          Height="26"
+                          Width="26"
+                          Unchecked="ToggleButton_Unchecked"
+                          x:Name="SwapToggle" />
+        </Grid>
     </Grid>
 </UserControl>
